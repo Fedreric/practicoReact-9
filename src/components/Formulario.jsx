@@ -1,79 +1,66 @@
 import { Form, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 const Formulario = () => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [dni, setDni] = useState("");
-  const [email, setEmail] = useState("");
+  const [nombreMascota, setNombreMascota] = useState("");
+  const [nombreDueño, setNombreDueño] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [hora, setHora] = useState("");
+  const [sintomas, setSintomas] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const validacionEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (
-      validacionEmail.test(email) &&
-      nombre.trim() !== "" &&
-      apellido.trim() !== "" &&
-      dni.trim() !== ""
-    ) {
-      alert(`nombre: ${nombre}
-            apellido: ${apellido}
-            dni: ${dni}
-            email: ${email}`);
-            
-            setNombre("");
-            setApellido("");
-            setDni("");
-            setEmail("");
-    }else{
-        alert('Completa todos los datos')
-    }
+    e.preventDefault();  
   };
 
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="nombre">
+        <Form.Group className="mb-3" controlId="nombreMascota">
           <Form.Control
             type="text"
-            placeholder="Nombre EJ: Federico"
+            placeholder="Nombre de mascota"
             minLength={3}
             maxLength={30}
             required
-            onChange={(e) => setNombre(e.target.value)}
-            value={nombre}
+            onChange={(e) => setNombreMascota(e.target.value)}
+            value={nombreMascota}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="apellido">
+        <Form.Group className="mb-3" controlId="nombreDueño">
           <Form.Control
             type="text"
-            placeholder="Apellido Ej: Ledesma"
+            placeholder="Nombre del dueño"
             minLength={3}
             maxLength={30}
             required
-            onChange={(e) => setApellido(e.target.value)}
-            value={apellido}
+            onChange={(e) => setNombreDueño(e.target.value)}
+            value={nombreDueño}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="dni">
+        <Form.Group className="mb-3" controlId="fecha">
           <Form.Control
-            type="number"
-            placeholder="D.N.I Ej: 44555777"
-            min={1111111}
-            max={9999999}
+            type="date"
             required
-            onChange={(e) => setDni(e.target.value)}
-            value={dni}
+            onChange={(e) => setFecha(e.target.value)}
+            value={fecha}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="email">
+        <Form.Group className="mb-3" controlId="hora">
           <Form.Control
-            type="email"
-            placeholder="Email Ej: fede@gmail.com"
-            minLength={9}
+            type="time"
+            required
+            onChange={(e) => setHora(e.target.value)}
+            value={hora}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="sintomas">
+          <Form.Control
+            type="text"
+            placeholder="Sintomas"
+            minLength={5}
             maxLength={60}
             required
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            onChange={(e) => setSintomas(e.target.value)}
+            value={sintomas}
           />
         </Form.Group>
         <Button variant="primary" type="submit">
