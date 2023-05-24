@@ -1,19 +1,46 @@
-import { Form, Button, Container } from "react-bootstrap";
-import { useState } from "react";
+import { Form, Button, Container, InputGroup } from "react-bootstrap";
+import { useState, useEffect } from "react";
 const Formulario = () => {
   const [nombreMascota, setNombreMascota] = useState("");
   const [nombreDueño, setNombreDueño] = useState("");
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
   const [sintomas, setSintomas] = useState("");
-
+  let citasLS = JSON.parse(localStorage.getItem("listaCitas")) || [];
+  const [citas, setCitas] = useState(citasLS);
+  const [validated, setValidated] = useState(false);
+  useEffect(()=>{
+    localStorage.setItem('listaCitas',JSON.stringify(citas));
+  },[citas])
   const handleSubmit = (e) => {
-    e.preventDefault();  
+    // const fechaActual = new Date();
+    // const fechaElegida = new Date(fecha);
+    e.preventDefault(); 
+    const form = e.currentTarget;
+
+    if (form.checkValidity() === false) {
+      alert('Datos erroneos!');
+    }else{
+      const nuevaCita = {
+        "nombreMascota": nombreMascota,
+        "nombreDueño": nombreDueño,
+        "fecha": fecha,
+        "hora": hora,
+        "sintomas": sintomas
+      }
+      setCitas([...citas,nuevaCita])
+      setNombreMascota('');
+      setNombreDueño('');
+      setFecha('');
+      setHora('');
+      setSintomas('');
+    }
+    setValidated(true);
   };
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="nombreMascota">
           <Form.Control
             type="text"
@@ -43,6 +70,9 @@ const Formulario = () => {
             onChange={(e) => setFecha(e.target.value)}
             value={fecha}
           />
+          <Form.Control.Feedback type="invalid">
+            Ingresa una fecha valida.
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3" controlId="hora">
           <Form.Control
