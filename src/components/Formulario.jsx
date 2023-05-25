@@ -1,4 +1,4 @@
-import { Form, Button, Container, InputGroup } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import ContenedorCitas from "./ContenedorCitas";
 const Formulario = () => {
@@ -9,43 +9,48 @@ const Formulario = () => {
   const [sintomas, setSintomas] = useState("");
   let citasLS = JSON.parse(localStorage.getItem("listaCitas")) || [];
   const [citas, setCitas] = useState(citasLS);
-  const [validated, setValidated] = useState(false);
-  useEffect(()=>{
-    localStorage.setItem('listaCitas',JSON.stringify(citas));
-  },[citas])
-  const borrarCita = (citaEliminar) =>{
-    let citasFiltrada = citas.filter((cita)=> cita !== citaEliminar)
-    setCitas(citasFiltrada);
-  }
-  const handleSubmit = (e) => {
-    // const fechaActual = new Date();
-    // const fechaElegida = new Date(fecha);
-    e.preventDefault(); 
-    const form = e.currentTarget;
 
-    if (form.checkValidity() === false) {
-      alert('Datos erroneos!');
-    }else{
-      const nuevaCita = {
-        "nombreMascota": nombreMascota,
-        "nombreDueño": nombreDueño,
-        "fecha": fecha,
-        "hora": hora,
-        "sintomas": sintomas
-      }
-      setCitas([...citas,nuevaCita])
-      setNombreMascota('');
-      setNombreDueño('');
-      setFecha('');
-      setHora('');
-      setSintomas('');
+  useEffect(() => {
+    localStorage.setItem("listaCitas", JSON.stringify(citas));
+  }, [citas]);
+
+  const borrarCita = (citaEliminar) => {
+    let citasFiltrada = citas.filter((cita) => cita !== citaEliminar);
+    setCitas(citasFiltrada);
+  };
+
+  const validarNombreMascota = (nombreMascota) => {
+    if (nombreMascota.trim() !== "" ) {
+      return true;
     }
-    setValidated(true);
+    return false;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validarNombreMascota(nombreMascota)) {
+      const nuevaCita = {
+        nombreMascota: nombreMascota,
+        nombreDueño: nombreDueño,
+        fecha: fecha,
+        hora: hora,
+        sintomas: sintomas,
+      };
+      setCitas([...citas, nuevaCita]);
+      setNombreMascota("");
+      setNombreDueño("");
+      setFecha("");
+      setHora("");
+      setSintomas("");
+    } else {
+      alert("ups");
+    }
   };
 
   return (
     <Container>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="nombreMascota">
           <Form.Control
             type="text"
@@ -75,9 +80,6 @@ const Formulario = () => {
             onChange={(e) => setFecha(e.target.value)}
             value={fecha}
           />
-          <Form.Control.Feedback type="invalid">
-            Ingresa una fecha valida.
-          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3" controlId="hora">
           <Form.Control
