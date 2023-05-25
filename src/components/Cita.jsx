@@ -1,18 +1,18 @@
 import { Button, Card } from "react-bootstrap";
-const Cita = () => {
+const Cita = ({cita}) => {
   return (
         <Card>
           <Card.Header>
-            <Card.Title>Mascota: Firulais</Card.Title>
+            <Card.Title>Mascota: {cita.nombreMascota}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              Dueño: Pedro
+              Dueño: {cita.nombreDueño}
             </Card.Subtitle>
           </Card.Header>
           <Card.Body>
-            <Card.Text>Fecha: 2023-05-26</Card.Text>
-            <Card.Text>Hora: 18:00 hs</Card.Text>
+            <Card.Text>Fecha: {cita.fecha}</Card.Text>
+            <Card.Text>Hora: {cita.hora} hs</Card.Text>
             <Card.Text>
-              Sintomas: Debilidad, falta de apetito, dolor al caminar.
+              Sintomas: {cita.sintomas}
             </Card.Text>
           </Card.Body>
           <Card.Footer>
