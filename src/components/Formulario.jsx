@@ -12,6 +12,7 @@ const Formulario = () => {
   const [validated, setValidated] = useState(false);
   useEffect(()=>{
     localStorage.setItem('listaCitas',JSON.stringify(citas));
+    console.log(citas)
   },[citas])
   const handleSubmit = (e) => {
     // const fechaActual = new Date();
@@ -98,7 +99,7 @@ const Formulario = () => {
           Enviar
         </Button>
       </Form>
-      <ContenedorCitas></ContenedorCitas>
+      <ContenedorCitas citas={citas}></ContenedorCitas>
     </Container>
   );
 };
