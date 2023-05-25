@@ -19,11 +19,18 @@ const Formulario = () => {
     setCitas(citasFiltrada);
   };
 
+  const msjError =(errorMascota)=>{
+
+  }
+
   const validarNombreMascota = (nombreMascota) => {
-    if (nombreMascota.trim() !== "" ) {
+    let error = '';
+    if (nombreMascota.trim() !== "" && nombreMascota.maxLength >= 3) {
       return true;
+    }else{
+      
+      return false;
     }
-    return false;
   };
 
   const handleSubmit = (e) => {
