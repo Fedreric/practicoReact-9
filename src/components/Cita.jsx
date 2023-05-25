@@ -1,5 +1,5 @@
 import { Button, Card } from "react-bootstrap";
-const Cita = ({cita}) => {
+const Cita = ({cita, borrarCita}) => {
   return (
         <Card>
           <Card.Header>
@@ -16,7 +16,7 @@ const Cita = ({cita}) => {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <Button>Borrar</Button>
+            <Button onClick={()=>borrarCita(cita)}>Borrar</Button>
           </Card.Footer>
         </Card>
   );

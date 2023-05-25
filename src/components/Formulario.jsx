@@ -12,8 +12,11 @@ const Formulario = () => {
   const [validated, setValidated] = useState(false);
   useEffect(()=>{
     localStorage.setItem('listaCitas',JSON.stringify(citas));
-    console.log(citas)
   },[citas])
+  const borrarCita = (citaEliminar) =>{
+    let citasFiltrada = citas.filter((cita)=> cita !== citaEliminar)
+    setCitas(citasFiltrada);
+  }
   const handleSubmit = (e) => {
     // const fechaActual = new Date();
     // const fechaElegida = new Date(fecha);
@@ -99,7 +102,7 @@ const Formulario = () => {
           Enviar
         </Button>
       </Form>
-      <ContenedorCitas citas={citas}></ContenedorCitas>
+      <ContenedorCitas citas={citas} borrarCita={borrarCita}></ContenedorCitas>
     </Container>
   );
 };
