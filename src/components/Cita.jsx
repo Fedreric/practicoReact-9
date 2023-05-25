@@ -1,17 +1,25 @@
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 const Cita = () => {
   return (
-    <Card className="col-md-6 col-lg-4">
+    <Card className="col-md-6 col-lg-4 w-auto">
+      <Card.Header>
+        <Card.Title>Mascota: Firulais</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Dueño: Pedro</Card.Subtitle>
+      </Card.Header>
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          Fecha: 2023-05-26
         </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
+        <Card.Text>
+          Hora: 18:00 hs
+        </Card.Text>
+        <Card.Text>
+          Sintomas: Debilidad, falta de apetito, dolor al caminar.
+        </Card.Text>
       </Card.Body>
+      <Card.Footer>
+        <Button>Borrar</Button>
+      </Card.Footer>
     </Card>
   );
 };

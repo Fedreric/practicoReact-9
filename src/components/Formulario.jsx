@@ -1,5 +1,6 @@
 import { Form, Button, Container, InputGroup } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import ContenedorCitas from "./ContenedorCitas";
 const Formulario = () => {
   const [nombreMascota, setNombreMascota] = useState("");
   const [nombreDueño, setNombreDueño] = useState("");
@@ -97,6 +98,7 @@ const Formulario = () => {
           Enviar
         </Button>
       </Form>
+      <ContenedorCitas></ContenedorCitas>
     </Container>
   );
 };
