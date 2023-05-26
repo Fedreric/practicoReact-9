@@ -95,9 +95,9 @@ const Formulario = () => {
           <Form.Control
             type="text"
             placeholder="Nombre de mascota"
-            // minLength={3}
-            // maxLength={30}
-            // required
+            minLength={3}
+            maxLength={30}
+            required
             onChange={(e) => setNombreMascota(e.target.value)}
             value={nombreMascota}
           />
@@ -106,9 +106,9 @@ const Formulario = () => {
           <Form.Control
             type="text"
             placeholder="Nombre del dueño"
-            // minLength={3}
-            // maxLength={30}
-            // required
+            minLength={3}
+            maxLength={30}
+            required
             onChange={(e) => setNombreDueño(e.target.value)}
             value={nombreDueño}
           />
@@ -116,7 +116,7 @@ const Formulario = () => {
         <Form.Group className="mb-3" controlId="fecha">
           <Form.Control
             type="date"
-            // required
+            required
             onChange={(e) => setFecha(e.target.value)}
             value={fecha}
           />
@@ -124,7 +124,7 @@ const Formulario = () => {
         <Form.Group className="mb-3" controlId="hora">
           <Form.Control
             type="time"
-            // required
+            required
             onChange={(e) => setHora(e.target.value)}
             value={hora}
           />
@@ -133,9 +133,9 @@ const Formulario = () => {
           <Form.Control
             type="text"
             placeholder="Sintomas"
-            // minLength={5}
-            // maxLength={60}
-            // required
+            minLength={5}
+            maxLength={60}
+            required
             onChange={(e) => setSintomas(e.target.value)}
             value={sintomas}
           />
