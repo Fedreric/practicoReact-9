@@ -1,16 +1,21 @@
-# Trabajo practico N°1: React - Formulario simple!
+# Trabajo practico N°1: React - Veterinaria!
 
 ![React](https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg)
 
-Ejercicio 8 del TP N°1-React: Formulario simple.
-Consta de un formulario donde podemos ingresar nuestro nombre, apellido, dni y nuestro email, y al precionar el boton enviar nos muestra en un alert los datos ingresado.
+Ejercicio 9 del TP N°1-React: Veterinaria.
+Simula una aplecacion de creacion de citas para una veterinaria, donde se solicita:
+- Nombre de la mascota
+- Nombre del dueño
+- Fecha de la cita
+- Hora de la cita
+- Sintomas que presenta
 
-El formulario cuenta con una validación simple donde no se permiten ingresar valores vacios y se corrobora el emial mediante una exprecion regular.
+Y se muestras las citas cargadas en un administrador de citas, donde te permite eliminarlas.
 
 ## Para clonar el repositorio 💻
 
 ```bash
-git clone https://github.com/Fedreric/practicoReact-8.git
+git clone https://github.com/Fedreric/practicoReact-9.git
 ```
 >**EJECUTAR:** 
 - npm install
