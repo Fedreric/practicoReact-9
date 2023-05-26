@@ -26,7 +26,7 @@ const Formulario = () => {
       return false;
     }
   }
-  const sumarioValidaciones =(nombreMascota,nombreDueño,sintomas)=>{ 
+  const sumarioValidaciones =(nombreMascota,nombreDueño,sintomas,fecha,hora)=>{ 
     let error = '';
     if(!minLengthYMaxLenghth(nombreMascota,3,30)){
       error += 'Ingresa un nombre de mascota correcto (min:3 max:30 letras)\n';
@@ -37,7 +37,12 @@ const Formulario = () => {
     if(!minLengthYMaxLenghth(sintomas,5,60)){
       error += 'Ingresa sintomas correctos (min:5 max:60 letras)\n';
     }
-
+    if(!validarFecha(fecha)){
+      error += 'No puedes ingresar una fecha anterior\n';
+    }
+    if(!validarHora(hora)){
+      error += 'La hora ingresada es invalida. (Horario de atencion: 9:00 a 21:00)';
+    }
     if(error.length !== 0){
       return error;
     }else{
@@ -45,9 +50,24 @@ const Formulario = () => {
     }
   }
 
+  const validarFecha =(fecha)=>{
+    const FECHA_ACTUAL = new Date();
+    const FECHA_INGRESADA = new Date(fecha);
+    if(FECHA_ACTUAL <= FECHA_INGRESADA){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const validarHora =(hora)=>{
+    const expresionHora = /^(0?9|1[0-9]|20):[0-5][0-9]\s?$/;
+    return expresionHora.test(hora);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    let sumario = sumarioValidaciones(nombreMascota,nombreDueño,sintomas);
+    console.log(typeof(hora))
+    let sumario = sumarioValidaciones(nombreMascota,nombreDueño,sintomas,fecha,hora);
     if (sumario.length === 0) {
       const nuevaCita = {
         nombreMascota: nombreMascota,
