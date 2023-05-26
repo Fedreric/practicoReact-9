@@ -19,24 +19,36 @@ const Formulario = () => {
     setCitas(citasFiltrada);
   };
 
-  const msjError =(errorMascota)=>{
-
-  }
-
-  const validarNombreMascota = (nombreMascota) => {
-    let error = '';
-    if (nombreMascota.trim() !== "" && nombreMascota.maxLength >= 3) {
+  const minLengthYMaxLenghth = (valor,min, max) =>{
+    if(valor.length >= min && valor.length <= max){
       return true;
     }else{
-      
       return false;
     }
-  };
+  }
+  const sumarioValidaciones =(nombreMascota,nombreDueño,sintomas)=>{ 
+    let error = '';
+    if(!minLengthYMaxLenghth(nombreMascota,3,30)){
+      error += 'Ingresa un nombre de mascota correcto (min:3 max:30 letras)\n';
+    }
+    if(!minLengthYMaxLenghth(nombreDueño,3,30)){
+      error += 'Ingresa un nombre de dueño correcto (min:3 max:30 letras)\n';
+    }
+    if(!minLengthYMaxLenghth(sintomas,5,60)){
+      error += 'Ingresa sintomas correctos (min:5 max:60 letras)\n';
+    }
+
+    if(error.length !== 0){
+      return error;
+    }else{
+      return '';
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (validarNombreMascota(nombreMascota)) {
+    let sumario = sumarioValidaciones(nombreMascota,nombreDueño,sintomas);
+    if (sumario.length === 0) {
       const nuevaCita = {
         nombreMascota: nombreMascota,
         nombreDueño: nombreDueño,
@@ -51,7 +63,7 @@ const Formulario = () => {
       setHora("");
       setSintomas("");
     } else {
-      alert("ups");
+      alert(sumario);
     }
   };
 
@@ -62,9 +74,9 @@ const Formulario = () => {
           <Form.Control
             type="text"
             placeholder="Nombre de mascota"
-            minLength={3}
-            maxLength={30}
-            required
+            // minLength={3}
+            // maxLength={30}
+            // required
             onChange={(e) => setNombreMascota(e.target.value)}
             value={nombreMascota}
           />
@@ -73,9 +85,9 @@ const Formulario = () => {
           <Form.Control
             type="text"
             placeholder="Nombre del dueño"
-            minLength={3}
-            maxLength={30}
-            required
+            // minLength={3}
+            // maxLength={30}
+            // required
             onChange={(e) => setNombreDueño(e.target.value)}
             value={nombreDueño}
           />
@@ -83,7 +95,7 @@ const Formulario = () => {
         <Form.Group className="mb-3" controlId="fecha">
           <Form.Control
             type="date"
-            required
+            // required
             onChange={(e) => setFecha(e.target.value)}
             value={fecha}
           />
@@ -91,7 +103,7 @@ const Formulario = () => {
         <Form.Group className="mb-3" controlId="hora">
           <Form.Control
             type="time"
-            required
+            // required
             onChange={(e) => setHora(e.target.value)}
             value={hora}
           />
@@ -100,9 +112,9 @@ const Formulario = () => {
           <Form.Control
             type="text"
             placeholder="Sintomas"
-            minLength={5}
-            maxLength={60}
-            required
+            // minLength={5}
+            // maxLength={60}
+            // required
             onChange={(e) => setSintomas(e.target.value)}
             value={sintomas}
           />
