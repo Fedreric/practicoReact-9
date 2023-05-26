@@ -89,6 +89,7 @@ const Formulario = () => {
 
   return (
     <Container>
+      <h1 className="display-1 text-center mb-5">Veterinaria</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="nombreMascota">
           <Form.Control
